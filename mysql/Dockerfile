@@ -9,17 +9,17 @@ ENV MYSQL_RANDOM_ROOT_PASSWORD=no
 # Copia los scripts SQL de inicialización a la carpeta de inicio de MySQL
 COPY ./init.sh /init.sh
 #COPY ./init.sh /docker-entrypoint-initdb.d/
-COPY ./init.sql /docker-entrypoint-initdb.d/
+#COPY ./init.sql /docker-entrypoint-initdb.d/
 COPY ./product_catalog.sql /docker-entrypoint-initdb.d/
 COPY ./purchase_orders.sql /docker-entrypoint-initdb.d/
 
 # Convertir los finales de línea a formato Unix (LF)
-RUN sed -i 's/\r$//'  ./init.sh /init.sh
+#RUN sed -i 's/\r$//'  ./init.sh /init.sh
 
 
 # Concede permisos de ejecución al script init.sh
 RUN chmod +x /init.sh
-RUN chmod +x /docker-entrypoint-initdb.d/init.sql
+#RUN chmod +x /docker-entrypoint-initdb.d/init.sql
 RUN chmod +x /docker-entrypoint-initdb.d/product_catalog.sql
 RUN chmod +x /docker-entrypoint-initdb.d/purchase_orders.sql
 # Expone el puerto 3306 (el puerto predeterminado de MySQL)
@@ -29,10 +29,10 @@ EXPOSE 3306
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 # Ejecuta el script para configurar MySQL
-#RUN /init.sh
+RUN /init.sh
 
 # Ejecutar el script al iniciar el contenedor
-CMD ["/bin/bash", "/init.sh /init.sh"]
+#CMD ["/bin/bash", "/init.sh /init.sh"]
 
 CMD ["mysqld"]
 
