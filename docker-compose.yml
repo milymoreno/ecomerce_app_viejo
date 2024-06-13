@@ -57,8 +57,8 @@ services:
     container_name: mysql_db
     environment:     
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_ALLOW_EMPTY_PASSWORD: YES
-      MYSQL_RANDOM_ROOT_PASSWORD: NO
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'YES'
+      MYSQL_RANDOM_ROOT_PASSWORD: 'NO'
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin
     volumes:
